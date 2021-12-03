@@ -4,7 +4,8 @@ defmodule Words do
 
     result =
       Enum.reduce(stream, 0, fn(line, acc) ->
-        String.split(line, " ")
+        line
+        |> String.split(" ")
         |> Enum.count()
         |> Kernel.+(acc)
       end)
@@ -21,7 +22,8 @@ defmodule Words do
       |> Flow.from_enumerable(max_demand: 20)
       |> Flow.reduce(fn -> [] end, fn(line, acc) ->
         words_count =
-          String.split(line, " ")
+          line
+          |> String.split(" ")
           |> Enum.count()
 
         [words_count | acc]
