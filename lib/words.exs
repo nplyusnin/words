@@ -49,10 +49,16 @@ defmodule Words do
   end
 
   def parse("", acc), do: acc
-  def parse(<<?\s, rest :: binary()>>, acc),
-    do: parse(rest, acc + 1)
-  def parse(<<_ :: utf8(), rest :: binary()>>, acc),
-    do: parse(rest, acc)
+  for word_length <- 1..100 do
+    def parse(<<
+      word :: binary-size(unquote(word_length)),
+      "\s",
+      rest :: binary(),
+    >>, acc) do
+      parse(rest, acc + 1)
+    end
+  end
+  def parse(rest, acc), do: acc
 
   def run do
     Benchee.run(%{
