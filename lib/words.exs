@@ -71,3 +71,9 @@ end
 
 Words.run()
 # IO.inspect(Words.parse("foo bar baz foo bar baz foo bar baz", 1))
+
+
+# Comparison:
+# words_flow                           0.51
+# words_flow_pattern_matching          0.50 - 1.02x slower +0.0327 s
+# words                                0.35 - 1.48x slower +0.94 s
